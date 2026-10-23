@@ -111,7 +111,7 @@ export const HourlyChart = ({ plan, nowHour }: HourlyChartProps) => {
         <span className="sr-only">{summary}</span>
       </figcaption>
 
-      <div className="h-64 sm:h-72" aria-hidden>
+      <div className="h-64 sm:h-72 2xl:h-80" aria-hidden>
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={rows} margin={{ top: 8, right: 4, bottom: 0, left: -8 }} barCategoryGap="22%">
             <CartesianGrid vertical={false} stroke="var(--line)" />

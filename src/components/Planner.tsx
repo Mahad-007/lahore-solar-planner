@@ -70,7 +70,7 @@ export const Planner = () => {
   return (
     <div className="flex min-h-dvh flex-col">
       <header className="bg-surface">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6">
+        <div className="flex items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <span aria-hidden className="grid size-9 place-items-center rounded-lg bg-solar text-on-solar">
               <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round">
@@ -99,7 +99,7 @@ export const Planner = () => {
         </div>
       </header>
 
-      <main className="mx-auto grid w-full max-w-6xl flex-1 gap-4 px-4 py-5 sm:px-6 sm:py-6 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-6">
+      <main className="grid w-full flex-1 gap-4 px-4 py-5 sm:px-6 sm:py-6 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-6 lg:px-8 2xl:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]">
         <h1 className="sr-only">Lahore solar planner</h1>
 
         <div className="order-1 min-w-0 space-y-4 lg:order-2">
@@ -185,7 +185,7 @@ export const Planner = () => {
       </main>
 
       <footer>
-        <div className="mx-auto max-w-6xl space-y-1.5 px-4 py-5 text-[13px] leading-relaxed text-fg-subtle sm:px-6">
+        <div className="space-y-1.5 px-4 py-5 text-[13px] leading-relaxed text-fg-subtle sm:px-6 lg:px-8">
           <p>
             Irradiance and weather data:{" "}
             <a href="https://open-meteo.com/" className="underline underline-offset-2 hover:text-fg">
@@ -328,17 +328,21 @@ const DayView = ({ data, settings, selectedDay, onSelectDay, isRefreshing }: Day
 
         <KpiRow plan={plan} />
 
-        <div>
-          <h3 className="mb-2 text-sm font-semibold text-fg">Hour by hour</h3>
-          <HourlyChart plan={plan} nowHour={isToday ? now.hour : null} />
-        </div>
+        {/* Side by side on wide screens so the extra width carries content, not stretched rows. */}
+        <div className="grid gap-5 2xl:grid-cols-2 2xl:gap-8">
+          <div className="min-w-0">
+            <h3 className="mb-2 text-sm font-semibold text-fg">Hour by hour</h3>
+            <HourlyChart plan={plan} nowHour={isToday ? now.hour : null} />
+          </div>
 
-        <div>
-          <h3 className="mb-1 text-sm font-semibold text-fg">Best times to run heavy appliances</h3>
-          <p className="mb-3 text-[13px] text-fg-muted">
-            Biggest loads get the sunniest slot first.{isToday && earliestSlot > 0 ? " Only the hours left today are used." : ""}
-          </p>
-          <ScheduleList plan={plan} isToday={isToday} daylightOver={isToday && !remainingSolar} />
+          <div className="min-w-0">
+            <h3 className="mb-1 text-sm font-semibold text-fg">Best times to run heavy appliances</h3>
+            <p className="mb-3 text-[13px] text-fg-muted">
+              Biggest loads get the sunniest slot first.
+              {isToday && earliestSlot > 0 ? " Only the hours left today are used." : ""}
+            </p>
+            <ScheduleList plan={plan} isToday={isToday} daylightOver={isToday && !remainingSolar} />
+          </div>
         </div>
       </div>
     </div>
