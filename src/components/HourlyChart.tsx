@@ -23,7 +23,7 @@ type Row = {
 };
 
 const SERIES = [
-  { key: "solar", label: "Solar output", swatch: "bg-chart-solar ring-1 ring-chart-solar-stroke" },
+  { key: "solar", label: "Solar output", swatch: "bg-chart-solar" },
   { key: "base", label: "Always-on load", swatch: "bg-chart-base" },
   { key: "appliances", label: "Scheduled appliances", swatch: "bg-chart-appliance" },
 ] as const;
@@ -36,7 +36,7 @@ const ChartTooltip = ({ active, payload }: TooltipProps) => {
   const load = row.base + row.appliances;
   const net = row.solar - load;
   return (
-    <div className="min-w-48 rounded-lg border border-line bg-surface px-3 py-2.5 text-[13px] shadow-lg">
+    <div className="min-w-48 rounded-lg border border-line bg-surface px-3 py-2.5 text-[13px]">
       <p className="tnum mb-1.5 font-semibold text-fg">
         {clock(row.hour)}–{clock(row.hour + 1)}
       </p>
@@ -142,10 +142,11 @@ export const HourlyChart = ({ plan, nowHour }: HourlyChartProps) => {
               type="monotone"
               dataKey="solar"
               fill="var(--chart-solar-fill)"
-              stroke="var(--chart-solar-stroke)"
-              strokeWidth={2}
+              fillOpacity={1}
+              stroke="var(--chart-solar)"
+              strokeWidth={2.5}
               isAnimationActive={false}
-              activeDot={{ r: 4, fill: "var(--chart-solar-stroke)", stroke: "var(--surface)", strokeWidth: 2 }}
+              activeDot={{ r: 4, fill: "var(--chart-solar)", stroke: "var(--surface)", strokeWidth: 2 }}
             />
             <Bar dataKey="base" stackId="load" fill="var(--chart-base)" maxBarSize={18} isAnimationActive={false} />
             <Bar
@@ -172,9 +173,9 @@ export const HourlyChart = ({ plan, nowHour }: HourlyChartProps) => {
 
       <details className="mt-3 text-sm">
         <summary className="cursor-pointer text-fg-muted hover:text-fg">Show hourly table</summary>
-        <div className="mt-2 max-h-72 overflow-auto rounded-lg border border-line">
+        <div className="mt-2 max-h-72 overflow-auto rounded-xl bg-subtle">
           <table className="tnum w-full text-left text-[13px]">
-            <thead className="sticky top-0 bg-subtle text-fg-muted">
+            <thead className="sticky top-0 bg-subtle-2 text-fg-muted">
               <tr>
                 <th scope="col" className="px-3 py-2 font-medium">Hour</th>
                 <th scope="col" className="px-3 py-2 text-right font-medium">Solar</th>

@@ -6,14 +6,14 @@ import type { DayPlan, Placement } from "@/lib/scheduler";
 const CoverageBadge = ({ coverage }: { coverage: number }) => {
   if (coverage >= 0.995)
     return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-solar-soft px-2 py-0.5 text-xs font-semibold text-solar-text">
+      <span className="inline-flex items-center gap-1 rounded-full bg-solar px-2 py-0.5 text-xs font-semibold text-on-solar">
         <Sun aria-hidden className="size-3.5" />
         100% solar
       </span>
     );
   if (coverage >= 0.5)
     return (
-      <span className="tnum inline-flex items-center gap-1 rounded-full bg-subtle px-2 py-0.5 text-xs font-semibold text-fg-muted">
+      <span className="tnum inline-flex items-center gap-1 rounded-full bg-subtle-2 px-2 py-0.5 text-xs font-semibold text-fg-muted">
         <Sun aria-hidden className="size-3.5" />
         {percent(coverage)} solar
       </span>
@@ -49,7 +49,7 @@ export const ScheduleList = ({ plan, isToday, daylightOver }: ScheduleListProps)
 
   if (plan.placements.length === 0) {
     return (
-      <p className="rounded-lg border border-dashed border-line px-4 py-8 text-center text-sm text-fg-muted">
+      <p className="rounded-xl bg-subtle px-4 py-8 text-center text-sm text-fg-muted">
         Add a heavy appliance in <span className="font-medium text-fg">Your loads</span> to see the best time to run it.
       </p>
     );
@@ -58,7 +58,7 @@ export const ScheduleList = ({ plan, isToday, daylightOver }: ScheduleListProps)
   return (
     <div>
       {isToday && daylightOver && (
-        <p className="mb-3 flex items-start gap-2 rounded-lg bg-subtle px-3 py-2.5 text-sm text-fg-muted">
+        <p className="mb-3 flex items-start gap-2 rounded-xl bg-solar-soft px-3 py-2.5 text-sm text-solar-text">
           <CircleSlash aria-hidden className="mt-0.5 size-4 shrink-0" />
           Today&apos;s sunshine is over. Pick tomorrow above to plan ahead.
         </p>
@@ -73,7 +73,7 @@ export const ScheduleList = ({ plan, isToday, daylightOver }: ScheduleListProps)
         {plan.placements.map((p) => {
           const message = limitMessage(p, peakSurplus);
           return (
-            <li key={p.appliance.id} className="flex gap-3 rounded-lg border border-line p-3 sm:gap-4 sm:p-3.5">
+            <li key={p.appliance.id} className="flex gap-3 rounded-xl bg-subtle p-3 sm:gap-4 sm:p-4">
               <div className="w-[4.5rem] shrink-0 sm:w-20">
                 {p.start !== null ? (
                   <>

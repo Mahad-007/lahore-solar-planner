@@ -38,13 +38,13 @@ export const LoadsForm = ({ baseKw, appliances, onBaseKwChange, onAdd, onUpdate,
         <div>
           <h3 className="mb-2 text-sm font-medium text-fg">Heavy appliances</h3>
           {appliances.length === 0 ? (
-            <p className="rounded-lg border border-dashed border-line px-3 py-4 text-center text-sm text-fg-muted">
+            <p className="rounded-lg bg-subtle px-3 py-4 text-center text-sm text-fg-muted">
               No appliances yet. Add one below to get a recommended time.
             </p>
           ) : (
             <ul className="space-y-2">
               {appliances.map((appliance) => (
-                <li key={appliance.id} className="rounded-lg border border-line bg-canvas p-3">
+                <li key={appliance.id} className="rounded-xl bg-subtle p-3">
                   <div className="flex items-center gap-2">
                     <label htmlFor={`name-${appliance.id}`} className="sr-only">
                       Appliance name
@@ -55,7 +55,7 @@ export const LoadsForm = ({ baseKw, appliances, onBaseKwChange, onAdd, onUpdate,
                       placeholder="Appliance name"
                       maxLength={40}
                       onChange={(e) => onUpdate(appliance.id, { name: e.target.value })}
-                      className={`h-9 min-w-0 flex-1 rounded-md border border-transparent bg-transparent px-2 text-[15px] font-medium text-fg hover:border-line focus-visible:border-control ${focusRing}`}
+                      className={`h-9 min-w-0 flex-1 rounded-md border border-transparent bg-transparent px-2 text-[15px] font-medium text-fg hover:border-control focus-visible:border-control ${focusRing}`}
                     />
                     <button
                       type="button"

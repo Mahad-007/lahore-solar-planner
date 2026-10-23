@@ -34,9 +34,9 @@ const kpisFor = (plan: DayPlan): Kpi[] => [
 export const KpiRow = ({ plan }: { plan: DayPlan }) => (
   <dl className="grid grid-cols-2 gap-2 sm:gap-3 xl:grid-cols-4">
     {kpisFor(plan).map((kpi) => (
-      <div key={kpi.label} className="min-w-0 rounded-lg border border-line bg-canvas px-3 py-2.5 sm:px-3.5 sm:py-3">
+      <div key={kpi.label} className="min-w-0 rounded-xl bg-subtle px-3 py-2.5 sm:px-4 sm:py-3.5">
         <dt className="truncate text-[13px] text-fg-muted">{kpi.label}</dt>
-        <dd className="tnum mt-0.5 text-lg font-semibold tracking-tight text-fg sm:text-xl">{kpi.value}</dd>
+        <dd className="tnum mt-0.5 text-lg font-bold tracking-tight whitespace-nowrap text-fg sm:text-xl">{kpi.value}</dd>
         <dd className="tnum mt-0.5 text-[13px] leading-snug text-fg-subtle">{kpi.detail}</dd>
       </div>
     ))}

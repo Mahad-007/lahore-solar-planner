@@ -17,6 +17,7 @@ import { KpiRow } from "./KpiRow";
 import { LoadsForm } from "./LoadsForm";
 import { ScheduleList } from "./ScheduleList";
 import { SystemForm } from "./SystemForm";
+import { ThemeToggle } from "./ThemeToggle";
 import { Card, SegmentedControl, Skeleton, focusRing } from "./ui";
 
 const STORAGE_KEY = "sunplan:v1";
@@ -68,12 +69,12 @@ export const Planner = () => {
 
   return (
     <div className="flex min-h-dvh flex-col">
-      <header className="border-b border-line bg-surface">
+      <header className="bg-surface">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6">
           <div className="flex items-center gap-3">
-            <span aria-hidden className="grid size-9 place-items-center rounded-lg bg-solar-soft text-solar-text">
-              <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <circle cx="12" cy="12" r="4" />
+            <span aria-hidden className="grid size-9 place-items-center rounded-lg bg-solar text-on-solar">
+              <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round">
+                <circle cx="12" cy="12" r="4" fill="currentColor" />
                 <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
               </svg>
             </span>
@@ -86,12 +87,15 @@ export const Planner = () => {
               </p>
             </div>
           </div>
-          <a
-            href="https://github.com/Mahad-007/lahore-solar-planner"
-            className={`pressable rounded-md px-2.5 py-1.5 text-sm font-medium text-fg-muted hover:bg-subtle hover:text-fg ${focusRing}`}
-          >
-            GitHub
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://github.com/Mahad-007/lahore-solar-planner"
+              className={`pressable rounded-lg px-3 py-2 text-sm font-medium text-fg-muted hover:bg-subtle hover:text-fg ${focusRing}`}
+            >
+              GitHub
+            </a>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -180,7 +184,7 @@ export const Planner = () => {
         </div>
       </main>
 
-      <footer className="border-t border-line">
+      <footer>
         <div className="mx-auto max-w-6xl space-y-1.5 px-4 py-5 text-[13px] leading-relaxed text-fg-subtle sm:px-6">
           <p>
             Irradiance and weather data:{" "}
@@ -213,7 +217,7 @@ type ResultsProps = {
 const Results = ({ data, status, error, isRefreshing, onRetry, ...rest }: ResultsProps) => {
   if (status === "error" && !data) {
     return (
-      <div role="alert" className="flex flex-col items-center rounded-lg border border-line bg-canvas px-4 py-10 text-center">
+      <div role="alert" className="flex flex-col items-center rounded-xl bg-subtle px-4 py-10 text-center">
         <CloudOff aria-hidden className="size-6 text-fg-subtle" />
         <p className="mt-3 font-medium text-fg">Couldn&apos;t load solar data</p>
         <p className="mt-1 max-w-sm text-sm text-fg-muted">{error}</p>

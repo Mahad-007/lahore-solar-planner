@@ -1,84 +1,92 @@
 @import "tailwindcss";
 
 /*
- * Color tokens. Components use only these semantic roles.
- * Every text pair is measured at >= 4.5:1 and control borders at >= 3:1 in both themes.
- * Amber means "solar generation" and nothing else; teal means "interactive".
+ * Flat design color tokens: solid blocks, no shadows, no gradients.
+ * Components use only these semantic roles. Every text pair is measured at >= 4.5:1
+ * and control borders at >= 3:1 in both themes; chart series pass the CVD validator.
+ * Amber means "solar generation" only; blue means "interactive" only.
+ * The theme is switched by one mechanism: data-theme on <html>, set before first paint.
  */
 :root {
-  --canvas: oklch(0.982 0.004 250);
+  --canvas: oklch(0.958 0.01 250);
   --surface: oklch(1 0 0);
-  --subtle: oklch(0.965 0.006 250);
-  --line: oklch(0.91 0.008 250);
-  --control: oklch(0.62 0.016 255);
+  --subtle: oklch(0.962 0.008 250);
+  --subtle-2: oklch(0.925 0.012 250);
+  --line: oklch(0.9 0.012 250);
+  --control: oklch(0.62 0.02 255);
 
-  --fg: oklch(0.22 0.025 255);
-  --fg-muted: oklch(0.45 0.022 255);
-  --fg-subtle: oklch(0.53 0.018 255);
+  --fg: oklch(0.22 0.03 260);
+  --fg-muted: oklch(0.44 0.025 260);
+  --fg-subtle: oklch(0.52 0.02 260);
 
-  --accent: oklch(0.49 0.083 195);
-  --accent-hover: oklch(0.44 0.08 195);
+  --accent: oklch(0.52 0.19 260);
+  --accent-hover: oklch(0.47 0.18 260);
   --on-accent: oklch(1 0 0);
-  --accent-text: oklch(0.45 0.072 195);
-  --accent-soft: oklch(0.955 0.025 195);
+  --accent-text: oklch(0.5 0.19 260);
+  --accent-soft: oklch(0.945 0.025 260);
 
-  --solar-soft: oklch(0.955 0.045 85);
-  --solar-text: oklch(0.46 0.1 60);
-  --danger: oklch(0.52 0.17 22);
-  --danger-soft: oklch(0.958 0.018 22);
+  --solar: oklch(0.8 0.16 75);
+  --on-solar: oklch(0.3 0.07 55);
+  --solar-soft: oklch(0.95 0.05 88);
+  --solar-text: oklch(0.47 0.11 60);
+  --danger: oklch(0.54 0.2 25);
+  --danger-soft: oklch(0.95 0.025 20);
 
-  --chart-solar: oklch(0.75 0.15 70);
-  --chart-solar-fill: oklch(0.75 0.15 70 / 0.32);
-  --chart-solar-stroke: oklch(0.66 0.15 62);
-  --chart-base: oklch(0.62 0.115 240);
-  --chart-appliance: oklch(0.52 0.17 300);
-
-  --shadow-card: 0 1px 2px oklch(0.22 0.025 255 / 0.05), 0 1px 1px oklch(0.22 0.025 255 / 0.03);
+  --chart-solar: oklch(0.75 0.16 68);
+  --chart-solar-fill: oklch(0.93 0.055 82);
+  --chart-base: oklch(0.64 0.11 185);
+  --chart-appliance: oklch(0.55 0.17 315);
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --canvas: oklch(0.165 0.012 255);
-    --surface: oklch(0.2 0.014 255);
-    --subtle: oklch(0.235 0.016 255);
-    --line: oklch(0.3 0.016 255);
-    --control: oklch(0.52 0.018 255);
+:root[data-theme="dark"] {
+  --canvas: oklch(0.15 0.015 260);
+  --surface: oklch(0.205 0.018 260);
+  --subtle: oklch(0.245 0.02 260);
+  --subtle-2: oklch(0.29 0.022 260);
+  --line: oklch(0.3 0.02 260);
+  --control: oklch(0.53 0.02 260);
 
-    --fg: oklch(0.955 0.006 255);
-    --fg-muted: oklch(0.76 0.016 255);
-    --fg-subtle: oklch(0.68 0.016 255);
+  --fg: oklch(0.96 0.006 260);
+  --fg-muted: oklch(0.77 0.016 260);
+  --fg-subtle: oklch(0.69 0.016 260);
 
-    --accent: oklch(0.74 0.105 192);
-    --accent-hover: oklch(0.79 0.1 192);
-    --on-accent: oklch(0.17 0.02 200);
-    --accent-text: oklch(0.8 0.1 192);
-    --accent-soft: oklch(0.28 0.04 195);
+  --accent: oklch(0.56 0.18 260);
+  --accent-hover: oklch(0.51 0.18 260);
+  --on-accent: oklch(1 0 0);
+  --accent-text: oklch(0.78 0.11 260);
+  --accent-soft: oklch(0.3 0.07 262);
 
-    --solar-soft: oklch(0.29 0.05 72);
-    --solar-text: oklch(0.86 0.11 82);
-    --danger: oklch(0.76 0.13 22);
-    --danger-soft: oklch(0.28 0.05 22);
+  --solar: oklch(0.8 0.15 75);
+  --on-solar: oklch(0.25 0.06 55);
+  --solar-soft: oklch(0.3 0.06 72);
+  --solar-text: oklch(0.86 0.12 82);
+  --danger: oklch(0.76 0.14 22);
+  --danger-soft: oklch(0.29 0.06 22);
 
-    --chart-solar: oklch(0.67 0.14 70);
-    --chart-solar-fill: oklch(0.82 0.13 78 / 0.2);
-    --chart-solar-stroke: oklch(0.8 0.145 74);
-    --chart-base: oklch(0.52 0.115 240);
-    --chart-appliance: oklch(0.66 0.15 305);
+  --chart-solar: oklch(0.66 0.14 68);
+  --chart-solar-fill: oklch(0.29 0.055 72);
+  --chart-base: oklch(0.62 0.105 185);
+  --chart-appliance: oklch(0.66 0.16 315);
 
-    --shadow-card: 0 0 0 1px oklch(1 0 0 / 0.02);
+  color-scheme: dark;
+}
 
-    color-scheme: dark;
-  }
+/* Swap themes in one frame: no element should fade its colors on its own schedule. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
 }
 
 @theme inline {
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
   --color-subtle: var(--subtle);
+  --color-subtle-2: var(--subtle-2);
   --color-line: var(--line);
   --color-control: var(--control);
   --color-fg: var(--fg);
@@ -89,15 +97,16 @@
   --color-on-accent: var(--on-accent);
   --color-accent-text: var(--accent-text);
   --color-accent-soft: var(--accent-soft);
+  --color-solar: var(--solar);
+  --color-on-solar: var(--on-solar);
   --color-solar-soft: var(--solar-soft);
   --color-solar-text: var(--solar-text);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
   --color-chart-solar: var(--chart-solar);
-  --color-chart-solar-stroke: var(--chart-solar-stroke);
+  --color-chart-solar-fill: var(--chart-solar-fill);
   --color-chart-base: var(--chart-base);
   --color-chart-appliance: var(--chart-appliance);
-  --shadow-card: var(--shadow-card);
   --ease-out-strong: var(--ease-out);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -105,7 +114,7 @@
 
 /* Press feedback for anything clickable. Under 160ms so frequent use never feels slow. */
 @utility pressable {
-  transition-property: transform, background-color, border-color, color, box-shadow;
+  transition-property: transform, background-color, border-color, color;
   transition-duration: 140ms;
   transition-timing-function: var(--ease-out);
   &:active:not(:disabled) {

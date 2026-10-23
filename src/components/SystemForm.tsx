@@ -74,7 +74,7 @@ export const SystemForm = ({ settings, onChange }: SystemFormProps) => (
         </p>
       </div>
 
-      <details className="group rounded-lg border border-line">
+      <details className="group rounded-xl bg-subtle">
         <summary
           className={`flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-fg-muted hover:text-fg [&::-webkit-details-marker]:hidden ${focusRing}`}
         >
@@ -84,7 +84,7 @@ export const SystemForm = ({ settings, onChange }: SystemFormProps) => (
             className="size-4 transition-transform duration-200 ease-out-strong group-open:rotate-180 motion-reduce:transition-none"
           />
         </summary>
-        <div className="border-t border-line px-3 pt-3 pb-3.5">
+        <div className="px-3 pt-1 pb-3.5">
           <div className="mb-1.5 flex items-baseline justify-between">
             <label htmlFor="pr" className="text-sm font-medium text-fg">
               System efficiency

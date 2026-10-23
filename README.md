@@ -13,7 +13,7 @@ Sunplan takes a Lahore household's panel size and typical loads, estimates hour-
 - **Appliance scheduler** that places each heavy load in the window it covers best from solar, and explains why when it can't reach 100% (too powerful, runs too long, or shares the sunny hours)
 - **Hourly chart and table**: solar output vs. always-on load and scheduled appliances, with per-hour tooltips
 - Settings are saved in your browser. No sign-up, no API keys.
-- Light and dark themes, keyboard accessible, works on phones
+- Flat design with a light/dark theme toggle (follows your system until you pick one), keyboard accessible, works on phones
 
 ## How the estimate works
 

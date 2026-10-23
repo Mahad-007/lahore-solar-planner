@@ -12,10 +12,10 @@ type DayTabsProps = {
   onSelect: (index: number) => void;
 };
 
-const WeatherIcon = ({ cloud }: { cloud: number }) => {
-  if (cloud < 25) return <Sun aria-hidden className="size-4 text-solar-text" />;
-  if (cloud < 65) return <CloudSun aria-hidden className="size-4 text-fg-subtle" />;
-  return <Cloud aria-hidden className="size-4 text-fg-subtle" />;
+const WeatherIcon = ({ cloud, active }: { cloud: number; active: boolean }) => {
+  const tone = active ? "text-on-accent" : cloud < 25 ? "text-solar-text" : "text-fg-subtle";
+  const Icon = cloud < 25 ? Sun : cloud < 65 ? CloudSun : Cloud;
+  return <Icon aria-hidden className={`size-4 ${tone}`} />;
 };
 
 const weatherWord = (cloud: number) => (cloud < 25 ? "sunny" : cloud < 65 ? "partly cloudy" : "cloudy");
@@ -63,16 +63,16 @@ export const DayTabs = ({ days, selected, onSelect }: DayTabsProps) => {
               tabIndex={active ? 0 : -1}
               onClick={() => onSelect(index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className={`pressable flex min-w-[4.75rem] shrink-0 snap-start xl:min-w-0 flex-col items-start gap-1 rounded-lg border px-3 py-2 text-left ${focusRing} ${
-                active
-                  ? "border-accent bg-accent-soft"
-                  : "border-line bg-surface hover:border-control"
+              className={`pressable flex min-w-[4.75rem] shrink-0 snap-start flex-col items-start gap-1 rounded-lg px-3 py-2 text-left xl:min-w-0 ${focusRing} ${
+                active ? "bg-accent" : "bg-subtle hover:bg-subtle-2"
               }`}
             >
-              <span className={`text-xs font-medium ${active ? "text-accent-text" : "text-fg-muted"}`}>{day.label}</span>
+              <span className={`text-xs font-medium ${active ? "text-on-accent" : "text-fg-muted"}`}>{day.label}</span>
               <span className="flex items-center gap-1.5">
-                <WeatherIcon cloud={day.cloud} />
-                <span className="tnum text-sm font-semibold text-fg">{day.kwh.toFixed(1)}</span>
+                <WeatherIcon cloud={day.cloud} active={active} />
+                <span className={`tnum text-sm font-semibold ${active ? "text-on-accent" : "text-fg"}`}>
+                  {day.kwh.toFixed(1)}
+                </span>
               </span>
             </button>
           );

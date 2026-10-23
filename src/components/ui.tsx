@@ -18,13 +18,13 @@ type CardProps = {
 export const Card = ({ title, titleId, description, action, children, className = "" }: CardProps) => (
   <section
     aria-labelledby={titleId}
-    className={`rounded-xl border border-line bg-surface p-4 shadow-card sm:p-5 ${className}`}
+    className={`rounded-2xl bg-surface p-4 sm:p-6 ${className}`}
   >
     {(title || action) && (
       <header className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           {title && (
-            <h2 id={titleId} className="text-[15px] font-semibold tracking-tight text-fg">
+            <h2 id={titleId} className="text-base font-semibold tracking-tight text-fg">
               {title}
             </h2>
           )}
@@ -131,7 +131,7 @@ export const SegmentedControl = <T extends string>({
   <fieldset className="min-w-0">
     <legend className={hideLegend ? "sr-only" : "mb-1.5 text-sm font-medium text-fg"}>{legend}</legend>
     <div
-      className="grid gap-1 rounded-lg border border-line bg-subtle p-1"
+      className="grid gap-1 rounded-lg bg-subtle-2 p-1"
       style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}
     >
       {options.map((option) => (
@@ -145,7 +145,7 @@ export const SegmentedControl = <T extends string>({
             className="peer sr-only"
           />
           <span
-            className={`pressable flex h-8 cursor-pointer items-center justify-center truncate rounded-md px-2 text-sm font-medium text-fg-muted hover:text-fg peer-checked:bg-surface peer-checked:text-accent-text peer-checked:shadow-card peer-checked:ring-1 peer-checked:ring-accent peer-focus-visible:outline-2 peer-focus-visible:outline-offset-1 peer-focus-visible:outline-accent`}
+            className="pressable flex h-8 cursor-pointer items-center justify-center truncate rounded-md px-2 text-sm font-semibold text-fg-muted hover:text-fg peer-checked:bg-accent peer-checked:text-on-accent peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent"
           >
             {option.label}
           </span>
@@ -171,10 +171,8 @@ export const Chip = ({ children, onClick, pressed, disabled, label }: ChipProps)
     disabled={disabled}
     aria-pressed={pressed}
     aria-label={label}
-    className={`pressable inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 ${focusRing} ${
-      pressed
-        ? "border-accent bg-accent-soft text-accent-text"
-        : "border-line bg-surface text-fg-muted hover:border-control hover:text-fg"
+    className={`pressable inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 ${focusRing} ${
+      pressed ? "bg-accent text-on-accent" : "bg-subtle-2 text-fg-muted hover:bg-accent-soft hover:text-accent-text"
     }`}
   >
     {children}
@@ -182,5 +180,5 @@ export const Chip = ({ children, onClick, pressed, disabled, label }: ChipProps)
 );
 
 export const Skeleton = ({ className = "" }: { className?: string }) => (
-  <div aria-hidden className={`animate-pulse rounded-lg bg-subtle motion-reduce:animate-none ${className}`} />
+  <div aria-hidden className={`animate-pulse rounded-lg bg-subtle-2 motion-reduce:animate-none ${className}`} />
 );
