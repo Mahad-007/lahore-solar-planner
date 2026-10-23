@@ -9,7 +9,7 @@ Sunplan takes a Lahore household's panel size and typical loads, estimates hour-
 ## Features
 
 - **7-day forecast** of hourly solar output for your exact panel tilt and direction, with a cloud indicator per day
-- **Typical day by month** (from last year's ERA5 records) for seasonal planning: compare a January day with a June day
+- **Typical day by month** (from the most recent complete month of ERA5 records) for seasonal planning: compare a January day with a June day
 - **Appliance scheduler** that places each heavy load in the window it covers best from solar, and explains why when it can't reach 100% (too powerful, runs too long, or shares the sunny hours)
 - **Hourly chart and table**: solar output vs. always-on load and scheduled appliances, with per-hour tooltips
 - Settings are saved in your browser. No sign-up, no API keys.

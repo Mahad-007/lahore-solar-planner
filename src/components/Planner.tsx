@@ -105,7 +105,7 @@ export const Planner = () => {
             description={
               settings.mode === "forecast"
                 ? "7-day forecast for Lahore. Pick a day to plan it."
-                : "Average hourly sunshine for the month, from last year's records."
+                : "Average hourly sunshine for the month, from the most recent complete records."
             }
             action={
               <div className="w-full sm:w-64">
